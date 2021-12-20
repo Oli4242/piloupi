@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<!--
+	Un jeu de carado (carado at savhon point org) pour Médic'action
+
+	This program is free software: you can redistribute it and/or modify
+    it under the terms of the GNU General Public License as published by
+    the Free Software Foundation, either version 3 of the License, or
+    (at your option) any later version.
+
+    This program is distributed in the hope that it will be useful,
+    but WITHOUT ANY WARRANTY; without even the implied warranty of
+    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+    GNU General Public License for more details.
+
+    You should have received a copy of the GNU General Public License
+    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+<html>
+	<head>
+		<meta charset="utf-8"/>
+		<title>Le peuple des Piloupis</title>
+		<style type="text/css">
+#resources { display:none; }
+html, body { width:100%; height:100%; }
+body { background-color:#1af; text-align:center; }
+canvas { width:auto; height:90%; background-color:#18c; position:relative; top:3%;  }
+html, body, canvas { padding:0px; margin:0px; border:none; }
+p { padding:0px 20px; }
+#footer { font-size:11px; margin:auto; background-color:white; padding:16px; border-top:4px solid grey; }
+#footer img { height:192px; }
+canvas { margin-bottom:16px; }
+a { text-decoration:none; }
+a { color:blue; }
+#options { border:2px solid grey; border-radius:8px; margin:auto; background-color:rgba(0,0,0,0.2); }
+td.o input { height:18px; padding:1px; width:64px; margin:0px; border:1px solid grey; border-radius:4px; }
+td { text-align:right; }
+td.o { text-align:left; }
+.mid,.mid td { text-align:center; }
+		</style>
+		<script type="text/javascript" src="piloupi.js">
+		</script>
+	</head>
+	<body onload="init()" onresize="resize()">
+		<canvas id="canvas" width="1200" height="800">
+			Désolé, mais votre navigateur semble ne pas supporter les canvas
+			HTML5.
+		</canvas>
+		<noscript>
+			Désolé, mais votre navigateur semble ne pas supporter Javascript.
+		</noscript>
+		<p>
+			<input type="button" value="Options de jeu" onclick="show_options()"/>
+		</p>
+		<table id="options" style="display:none">
+			<!--<tr>
+				<td>Niveau</td>
+				<td class="mid">
+					<input type="button" value="Facile (normal)">
+					<input type="button" value="Intermédiaire">
+					<br/>
+					<input type="button" value="Difficile">
+					<input type="button" value="Attaque de zombies">
+				</td>
+			</tr>-->
+			<tr>
+				<td>Taille du plateau</td>
+				<td class="o">
+					<input id="width_"/>×<input id="height_"/>
+				</td>
+			</tr>
+			<tr><td>Piloupis sains</td><td class="o"><input id="healthy_"/></td></tr>
+			<tr><td>Piloupis malades</td><td class="o"><input id="sick_"/></td></tr>
+			<tr><td>Maison de magiciens</td><td class="o"><input id="doctors_"/></td></tr>
+			<tr><td>Niveaux de maladie</td><td class="o"><input id="stages_"/></td></tr>
+			<tr><td>Coups par tour</td><td class="o"><input id="moves_"/></td></tr>
+			<tr class="mid">
+				<td colspan="2">
+					<input type="button" value="Valider (nouvelle partie)" onclick="parse_options(); start_game();" style="width:100%"/>
+				</td>
+			</tr>
+		</table>
+		<p>
+			Certains piloupis sont malades. Vaccinez les piloupis encore sains
+			pour que le moins possible ne succombent à la maladie !
+		</p>
+		<p>
+			À chaque tour, vous pouvez déplacer un certain nombre de piloupis
+			sains, et tout les autres piloupis se déplaceront aléatoirement
+			d’une case. À la fin du tour, chaque piloupi non-vacciné autour d’un
+			piloupi malade (y compris en diagonale) deviendra malade à son tour.
+			Faites passer les piloupis sains à la maison du magicien (en vert)
+			pour les faire vacciner, leur permettant ainsi de cotoyer des
+			piloupis malades sans crainte.
+		</p>
+		<p id="footer">
+			<span><img src="anepf.png"/><img src="medic-action.png"/>
+			<br/>
+			Un jeu pensé par Himiko, implémenté par carado (carado arobase savhon point org) pour Médic'action, sous licence GNU GPL.
+			Crédits:
+			<a href="https://commons.wikimedia.org/wiki/File:Emoji_u1f430.svg">
+				lapin</a>, 
+			<a href="https://commons.wikimedia.org/wiki/File:Home_Icon_by_Lakas.svg">maison</a>.
+		</p>
+	</body>
+</html>
+
